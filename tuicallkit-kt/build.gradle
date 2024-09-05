@@ -57,7 +57,7 @@ dependencies {
 afterEvaluate {
     publishing {
         publications {
-            release(MavenPublication) {
+            register(MavenPublication) {
                 from components.release
 
                 groupId = 'com.github.jpistomo'
