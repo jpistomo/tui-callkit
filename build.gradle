@@ -1,9 +1,10 @@
-import org.gradle.util.VersionNumber
-
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
 
+    ext {
+        agp_version = '8.5.0'
+    }
     repositories {
         google()
         mavenCentral()
@@ -11,17 +12,11 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        VersionNumber currentGradleVersion = VersionNumber.parse(gradle.gradleVersion)
-        if (currentGradleVersion.major >= 8) {
             classpath 'com.android.tools.build:gradle:8.0.2'
             classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0"
-        } else {
-            classpath 'com.android.tools.build:gradle:4.2.1'
-            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
-        }
 
         // delete it without offline push function
-        classpath 'com.google.gms:google-services:4.3.15'
+        classpath 'com.google.gms:google-services:4.4.2'
     }
 }
 
@@ -35,6 +30,6 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
+tasks.register('clean', Delete) {
     delete rootProject.buildDir
 }
